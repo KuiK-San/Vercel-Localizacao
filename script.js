@@ -3,7 +3,7 @@ let i = 1
 let arr = []
 
 
-setInterval(()=>{
+let chamador = setInterval(()=>{
     navigator.geolocation.getCurrentPosition((position) => {
         if(i % 50 === 0){
             paragraph.innerHTML = ''
@@ -31,10 +31,22 @@ setInterval(()=>{
                 marcelo.style.backgroundColor = "#000"
                 marcelo.style.color = "#fff"
             }
+            console.log(data)
         })
         .catch(error =>{
-            console.error(error)
+            paragraph.innerHTML += `<span id=span${i}>${i++}. ${position.coords.latitude} ${position.coords.longitude}</span>`
+            if(!arr.includes(q)){
+                arr.push(q)
+                let marcelo = document.querySelector(`#span${i - 1}`)
+                marcelo.style.backgroundColor = "#000"
+                marcelo.style.color = "#fff"
+            }
         })
         
     })
-},1000)
+},100)
+
+document.querySelector('button').addEventListener('click', ()=>{
+    clearInterval(chamador)
+    console.log('Parou')
+})
