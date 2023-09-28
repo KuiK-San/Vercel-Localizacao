@@ -34,6 +34,7 @@ let chamador = setInterval(()=>{
             console.log(data)
         })
         .catch(error =>{
+            document.querySelector('#erro').innerHTML = 'Algum erro encontrado na API do OSM'
             paragraph.innerHTML += `<span id=span${i}>${i++}. ${position.coords.latitude} ${position.coords.longitude}</span>`
             if(!arr.includes(q)){
                 arr.push(q)
@@ -44,7 +45,7 @@ let chamador = setInterval(()=>{
         })
         
     })
-},10)
+},100)
 
 document.querySelector('button').addEventListener('click', ()=>{
     clearInterval(chamador)
