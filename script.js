@@ -19,8 +19,14 @@ let chamador = setInterval(()=>{
 
         const url = new URL('https://nominatim.openstreetmap.org/reverse')
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
-        fetch(url)
+        paragraph.innerHTML += `<span id=span${i}>${i++}. ${position.coords.latitude} ${position.coords.longitude}</span>`
+            if(!arr.includes(q)){
+                arr.push(q)
+                let marcelo = document.querySelector(`#span${i - 1}`)
+                marcelo.style.backgroundColor = "#000"
+                marcelo.style.color = "#fff"
+            }
+        /* fetch(url)
         .then(response => response.json())
         .then(data =>{
             let endereco = data.address.road
@@ -42,7 +48,7 @@ let chamador = setInterval(()=>{
                 marcelo.style.backgroundColor = "#000"
                 marcelo.style.color = "#fff"
             }
-        })
+        }) */
         
     })
 },100)
