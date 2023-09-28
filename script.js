@@ -8,14 +8,33 @@ setInterval(()=>{
         if(i % 50 === 0){
             paragraph.innerHTML = ''
         }
-        let novo = `${position.coords.latitude} + ${position.coords.longitude}`
-        paragraph.innerHTML += `<span id=span${i}>${i++}. ${position.coords.latitude} ${position.coords.longitude}</span>`
-        if(!arr.includes(novo)){
-            arr.push(novo)
-            let marcelo = document.querySelector(`#span${i - 1}`)
-            console.log(marcelo)
-            marcelo.style.backgroundColor = "#000"
-            marcelo.style.color = "#fff"
+        let q = `${position.coords.latitude} ${position.coords.longitude}`
+
+        const params = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+            format: 'json',
+            limit: 1,
         }
+
+        const url = new URL('https://nominatim.openstreetmap.org/reverse')
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data =>{
+            let endereco = data.address.road
+            paragraph.innerHTML += `<span id=span${i}>${i++}. ${position.coords.latitude} ${position.coords.longitude} - ${endereco}</span>`
+            if(!arr.includes(q)){
+                arr.push(q)
+                let marcelo = document.querySelector(`#span${i - 1}`)
+                marcelo.style.backgroundColor = "#000"
+                marcelo.style.color = "#fff"
+            }
+        })
+        .catch(error =>{
+            console.error(error)
+        })
+        
     })
-},990)
+},1000)
