@@ -44,7 +44,7 @@ let chamador = setInterval(()=>{
         })
         
     })
-},100)
+},10)
 
 document.querySelector('button').addEventListener('click', ()=>{
     clearInterval(chamador)
