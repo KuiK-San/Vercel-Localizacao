@@ -16,24 +16,7 @@
     <p id="localization">
 
     </p>
-    <script src="script.js"></script>
-    <script>
-        if(window.Worker){
-            const myWorker = new Worker('worker.js')
-            document.querySelector('#start').addEventListener('click' , () => {
-                myWorker.onmessage = (event) => {
-                    if(event.data){
-                        chamador()
-                        console.log('Função chamada')
-                    }
-                }
-            })
-            document.querySelector('#stop').addEventListener('click', () =>{
-                myWorker.postMessage('stop')
-            })
-        }
-
-    </script>
+    <script src="script1.js"></script>
     
 </body>
 </html>
