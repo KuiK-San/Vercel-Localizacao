@@ -8,6 +8,7 @@ const getLocation = () => {
     let paragraph = document.querySelector('#localization')
     let i = 1
     let locs = []
+    let click = true
 
     myWorker.onmessage = (event) => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -24,10 +25,10 @@ const getLocation = () => {
         })
     }
     document.querySelector('#start').addEventListener('click', () => {
-        myWorker.postMessage({onoff: true, screen:{width: screen.width, height: screen.height}})
-    })
-    document.querySelector('#stop').addEventListener('click', () => {
-        myWorker.postMessage({onoff: false, screen:{width: screen.width, height: screen.height}})
+        if(click){
+            myWorker.postMessage({onoff: true, screen:{width: screen.width, height: screen.height}})
+            click = false
+        }
     })
 }
 
