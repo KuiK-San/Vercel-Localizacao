@@ -11,6 +11,7 @@ const getLocation = () => {
     myWorker.onmessage = (event) => {
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position)
+            document.querySelector('#reqs').innerHTML = i
             paragraph.innerHTML += `<span id=span${i}>${i++}. ${position.coords.latitude} ${position.coords.longitude}</span>`
         })
     }
