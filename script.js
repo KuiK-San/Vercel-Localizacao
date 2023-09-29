@@ -3,18 +3,17 @@ let i = 1
 let arr = []
 
 
-let chamador = setInterval(()=>{
+const chamador = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-        if(i % 50 === 0){
+        /* if(i % 50 === 0){
             paragraph.innerHTML = ''
-        }
+        } */
         let q = `${position.coords.latitude} ${position.coords.longitude}`
 
         const params = {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
-            format: 'json',
-            limit: 1,
+            format: 'json'
         }
 
         const url = new URL('https://nominatim.openstreetmap.org/reverse')
@@ -44,7 +43,7 @@ let chamador = setInterval(()=>{
         })
         
     })
-},10000)
+}
 
 document.querySelector('button').addEventListener('click', ()=>{
     clearInterval(chamador)
